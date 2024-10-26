@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: ms-authentication
+  profiles:
+    default: default
+  config:
+    import: "optional:configserver:http://localhost:7777"
+  datasource:
+    url: ${db.url}
+    username: ${db.username}
+    password: ${db.password}
+    driver-class-name: ${db.driver}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+server:
+  port: 3030
+  servlet:
+    context-path: /api
+
+eureka:
+  instance:
+    instance-id: "${spring.application.name}:${random.value}"
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
